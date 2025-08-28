@@ -19,7 +19,7 @@ for (let j = 0; j < callNumber.length; j++) {
     callNumber[j];
 }
 
-
+ const callDetailsContainer = document.getElementById("call-details-container");
 
 const callClick = document.getElementsByClassName("call-btn");
 for (let j = 0; j < callClick.length; j++) {
@@ -29,11 +29,27 @@ for (let j = 0; j < callClick.length; j++) {
         let coinValueElement = parseInt(coinValue.innerText);
 
         const data = {
-            name : callClick[j],
+            name : callAddress[j].innerText,
+            number : callNumber[j].innerText,
             date : new Date().toLocaleTimeString()
         }
         callDetails.push(data);
-        console.log(callDetails);
+        const div = document.createElement("div");
+        div.innerHTML =`
+         <div class="flex justify-around items-center ml-[20px] mr-[40px] font-semibold bg-[#f0f5fc] w-[330px] h-[72px] drop-shadow-sm rounded-md ... " id="call-info">
+                <div class="side-left">
+                    <p>${data.name}</p>
+                    <p class=" text-gray-400">${data.number}</p>
+                </div>
+
+                <div class="side-right">
+                    ${data.date}
+                </div>
+
+            </div>
+        `;
+        callDetailsContainer.appendChild(div)
+        
         if (coinValueElement >= 20) {
             coinValueElement = coinValueElement - 20;
             coinValue.innerText = coinValueElement;
