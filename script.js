@@ -74,3 +74,5 @@ for (let j = 0; j < copyNumber.length; j++) {
     })
 }
 
+// Clear Section
+
