@@ -1,8 +1,9 @@
+const callDetails = [];
 const heartClick = document.getElementsByClassName("heart-icon");
 let count = 0;
-for(let i=0; i<heartClick.length; i++){
-    heartClick[i].addEventListener("click",function(){
-        const updatedValue = document.getElementById("update-value-heart")
+for (let i = 0; i < heartClick.length; i++) {
+    heartClick[i].addEventListener("click", function () {
+        const updatedValue = document.getElementById("update-value-heart");
         count++;
         updatedValue.innerText = count;
     })
@@ -11,16 +12,37 @@ for(let i=0; i<heartClick.length; i++){
 // call section
 const callAddress = document.getElementsByClassName("card-para");
 for (let j = 0; j < callAddress.length; j++) {
-   callAddress[j];
+    callAddress[j];
 }
 const callNumber = document.getElementsByClassName("call-number");
 for (let j = 0; j < callNumber.length; j++) {
-   callNumber[j];
+    callNumber[j];
 }
+
+
+
 const callClick = document.getElementsByClassName("call-btn");
 for (let j = 0; j < callClick.length; j++) {
+
     callClick[j].addEventListener("click", function () {
-        alert("Calling " + callAddress[j].innerText + " " + callNumber[j].innerText + "...");
+        let coinValue = document.getElementById("update-value-coin");
+        let coinValueElement = parseInt(coinValue.innerText);
+
+        const data = {
+            name : callClick[j],
+            date : new Date().toLocaleTimeString()
+        }
+        callDetails.push(data);
+        console.log(callDetails);
+        if (coinValueElement >= 20) {
+            coinValueElement = coinValueElement - 20;
+            coinValue.innerText = coinValueElement;
+            alert("Calling " + callAddress[j].innerText + " " + callNumber[j].innerText + "...");
+        }
+        else if (coinValueElement < 20) {
+            alert("You dont have sufficient coin, 20 coins are needed to call");
+        }
+
     })
 }
 
@@ -28,10 +50,11 @@ for (let j = 0; j < callClick.length; j++) {
 const copyNumber = document.getElementsByClassName("copy-btn");
 let count1 = 0;
 for (let j = 0; j < copyNumber.length; j++) {
-   copyNumber[j].addEventListener("click",function(){
+    copyNumber[j].addEventListener("click", function () {
         count1++;
         const totalCopy = document.getElementById("total-copy");
         totalCopy.innerText = count1 + " Copy";
-   })
+        alert("Number has been copied " + callNumber[j].innerText);
+    })
 }
 
